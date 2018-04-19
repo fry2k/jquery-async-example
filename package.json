@@ -1,0 +1,15 @@
+{
+  "name": "jquery-async",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./bin/build.sh",
+    "build-html": "./bin/build-html.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "onchange": "^3.3.0"
+  }
+}
