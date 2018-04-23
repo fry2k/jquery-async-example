@@ -8,7 +8,7 @@
 	var domQueue = [];
 	var dom = {
 		/**
-		 * add function to our jQuery dom ready queue
+		 * recode document ready function which pushes every function to the local queue
 		 *
 		 * @param {function} f - function
 		 * @returns {{ready: Function}}
@@ -17,11 +17,12 @@
 			if(typeof f === 'function') {
 				domQueue.push(f);
 			}
-			// return jql in order to support jQuery(document).ready()
+			// return dom object in order to support jQuery(document).ready()
 			return dom;
 		}
 	};
 
+	// reference for the window.setInterval
 	var timer = false;
 
 	/**
@@ -29,9 +30,11 @@
 	 */
 	function initialized() {
 		if (typeof window.jQuery.fn === 'undefined') {
+			// seems like jQuery isn't loaded right now. just quit.
 			return false;
 		}
 		if (timer !== false) {
+			// clear the interval. will execute our queue only once
 			window.clearInterval(timer);
 		}
 		// jQuery is loaded, trigger all stored items from the dom ready queue
